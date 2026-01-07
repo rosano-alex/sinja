@@ -3,6 +3,7 @@ export const enum NodeFlags {
   DIRTY = 1 << 0,
   QUEUED = 1 << 1,
   RUNNING = 1 << 2,
+  DISPOSED = 1 << 3,
 }
 
 export interface Node {
