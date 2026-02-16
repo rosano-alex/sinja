@@ -1,4 +1,4 @@
-<p style="text-align: Left;"><img src="img/ICTUS.png" width="550"></p>
+<p style="text-align: Left;"><img src="img/ictus.png" width="550"></p>
 
 
 
