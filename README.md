@@ -1,6 +1,6 @@
-<p style="text-align: Left;"><img src="img/ictus.png" width="550"></p>
+<p style="text-align: Left;"><img src="img/ictus.png" width="450"></p>
 
-
+ [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/facebook/react/blob/main/LICENSE) [![npm version](https://img.shields.io/npm/v/react.svg?style=flat)](https://www.npmjs.com/package/react) [![(Runtime) Build and Test](https://github.com/facebook/react/actions/workflows/runtime_build_and_test.yml/badge.svg)](https://github.com/facebook/react/actions/workflows/runtime_build_and_test.yml) [![(Compiler) TypeScript](https://github.com/facebook/react/actions/workflows/compiler_typescript.yml/badge.svg?branch=main)](https://github.com/facebook/react/actions/workflows/compiler_typescript.yml) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://legacy.reactjs.org/docs/how-to-contribute.html#your-first-pull-request)
 
 **ICTUS** is a minimal, high‑performance fine‑grained reactive runtime built around signals, computed values, and deterministic scheduling. It is designed as a framework‑agnostic reactive engine that can power UI frameworks, state managers, and reactive data pipelines.
 
@@ -21,15 +21,14 @@ ICTUS achieves competitive performance because it uses:
 • Minimal runtime allocations  
 • Deterministic scheduler
 
-### Potential use cases:
-
+### Possible use cases:
 • UI frameworks  
 • concurrent rendering engines  
 • real‑time dashboards  
 • reactive simulation systems
 
 
-# Core Features
+### Core Features
 
 • Fine‑grained reactivity  
 • Signals for mutable state  
@@ -38,6 +37,9 @@ ICTUS achieves competitive performance because it uses:
 • Deterministic scheduler with priority lanes  
 • Very small runtime footprint  
 • Framework‑agnostic design
+
+
+**Extensive documentation can be found here:** <b>[Getting Started](./docs/./getting-started.md)</b>
 
 
 
