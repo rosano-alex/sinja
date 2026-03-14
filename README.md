@@ -241,26 +241,7 @@ Quanta focuses on **deterministic reactive graphs and runtime portability.**
 
 ---
 
-# Benchmarks
 
-Example microbenchmark (100k updates):
-
-| Library | Ops/sec |
-|------|------|
-| Quanta | ~2.1M |
-| Solid Signals | ~1.9M |
-| Angular Signals | ~1.4M |
-| MobX | ~900k |
-
-Benchmarks measure:
-
-• signal updates  
-• computed recomputation  
-• effect propagation  
-
-Actual performance depends on graph topology.
-
----
 
 # Project Structure
 
