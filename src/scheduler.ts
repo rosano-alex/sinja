@@ -36,14 +36,30 @@ function runQueue(queue: Node[]) {
   queue.length = 0
 }
 
+function hasWork(): boolean {
+  return (
+    phaseQueue[LaneTypes.SYNC].length > 0 ||
+    phaseQueue[LaneTypes.USER].length > 0 ||
+    phaseQueue[LaneTypes.TRANSITION].length > 0 ||
+    phaseQueue[LaneTypes.BACKGROUND].length > 0
+  )
+}
+
 function flush() {
 
-  // deterministic phase order
-  runQueue(phaseQueue[LaneTypes.SYNC] as Node[])
-  runQueue(phaseQueue[LaneTypes.USER] as Node[])
-  runQueue(phaseQueue[LaneTypes.TRANSITION] as Node[])
-  runQueue(phaseQueue[LaneTypes.BACKGROUND] as Node[])
+  // Re-run phases until no new work is produced (effects may schedule more effects)
+  let iterations = 0
+  do {
+    runQueue(phaseQueue[LaneTypes.SYNC] as Node[])
+    runQueue(phaseQueue[LaneTypes.USER] as Node[])
+    runQueue(phaseQueue[LaneTypes.TRANSITION] as Node[])
+    runQueue(phaseQueue[LaneTypes.BACKGROUND] as Node[])
+
+    // Safety valve to prevent infinite loops from cyclic effects
+    if (++iterations > 100) {
+      break
+    }
+  } while (hasWork())
 
   flushing = false
 }
-// update T10:19:46 30432

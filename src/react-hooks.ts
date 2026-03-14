@@ -61,9 +61,7 @@ export function usePulse<T>(pulse: PulseNode<T>): T {
       forceUpdate(v => v + 1)
     })
 
-    return () => {
-      // nothing for now
-    }
+    return () => effect.dispose()
 
   }, [pulse])
 
@@ -124,7 +122,7 @@ export function useComputed<T>(fn: () => T): T {
       forceUpdate(v => v + 1)
     })
 
-    return () => { }
+    return () => effect.dispose()
 
   }, [node])
 
@@ -192,7 +190,10 @@ export function useObserver(
 
   useEffect(() => {
     return () => {
-      effectRef.current = null
+      if (effectRef.current) {
+        effectRef.current.dispose()
+        effectRef.current = null
+      }
     }
   }, [])
 

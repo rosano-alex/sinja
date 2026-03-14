@@ -21,17 +21,32 @@ export class ComputedNode<T> implements Node {
     this.compute = fn
   }
 
+  observers: Node[] = []
+
   get(): T {
 
     if (this.flags & NodeFlags.DIRTY || this.lastEpoch !== epoch) {
       this.recompute()
     }
 
+    // Track this computed as a dependency of the active observer
+    const obs = activeObserver
+    if (obs && this.observers.indexOf(obs) === -1) {
+      this.observers.push(obs)
+    }
+
     return this.value
   }
 
   mark() {
-    this.flags |= NodeFlags.DIRTY
+    if (!(this.flags & NodeFlags.DIRTY)) {
+      this.flags |= NodeFlags.DIRTY
+
+      // Propagate dirty marks to downstream observers
+      for (let i = 0; i < this.observers.length; i++) {
+        this.observers[i].mark()
+      }
+    }
   }
 
   run() {
@@ -45,11 +60,13 @@ export class ComputedNode<T> implements Node {
 
     this.depCount = 0
 
-    const v = this.compute()
+    try {
+      const v = this.compute()
+      this.value = v
+    } finally {
+      setObserver(prev)
+    }
 
-    setObserver(prev)
-
-    this.value = v
     this.lastEpoch = epoch
     this.flags = NodeFlags.CLEAN
   }

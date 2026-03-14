@@ -20,10 +20,11 @@ export class EffectNode implements Node {
 
 
   dispose() {
-    this.flags = NodeFlags.CLEAN
+    this.flags = NodeFlags.DISPOSED
   }
 
   mark() {
+    if (this.flags & NodeFlags.DISPOSED) return
 
     if (!(this.flags & NodeFlags.QUEUED)) {
       this.flags |= NodeFlags.QUEUED
@@ -32,15 +33,17 @@ export class EffectNode implements Node {
   }
 
   run() {
+    if (this.flags & NodeFlags.DISPOSED) return
 
     const prev = activeObserver
     setObserver(this)
 
-    this.fn()
+    try {
+      this.fn()
+    } finally {
+      setObserver(prev)
+    }
 
-    setObserver(prev)
-
-    this.flags = NodeFlags.CLEAN
-    this.flags &= ~NodeFlags.QUEUED
+    this.flags &= ~(NodeFlags.DIRTY | NodeFlags.QUEUED)
   }
 }

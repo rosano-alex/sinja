@@ -387,7 +387,7 @@ export class Lane {
 
     let value: T;
     try {
-      value = (node as any).fn();
+      value = (node as any).compute();
     } finally {
       setObserver(null);
       setActiveLane(null);
@@ -410,13 +410,13 @@ export class Lane {
         if (visited.has(obs)) continue;
         visited.add(obs);
 
-        // If it looks like a ComputedNode (has level 1 and a get method)
-        if (obs.lane === 1 && 'get' in obs) {
+        // If it's a ComputedNode (has a compute method), mark dirty in this lane
+        if ('compute' in obs) {
           this.dirtyComputeds.add(obs as unknown as ComputedNode<any>);
         }
 
-        // If it's an effect (level >= 2), add to pending effects
-        if (obs.lane >= 2) {
+        // If it's an EffectNode (has a dispose method but no compute), queue it
+        if ('dispose' in obs && !('compute' in obs)) {
           this.pendingEffects.push(obs);
         }
 
