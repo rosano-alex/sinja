@@ -42,7 +42,11 @@ export class ComputedNode<T> implements Node {
 
       // Propagate dirty marks to downstream observers
       for (let i = 0; i < this.observers.length; i++) {
-        this.observers[i].mark();
+        const observer = this.observers[i];
+        if (observer) {
+          observer.mark();
+        }
+
       }
     }
   }

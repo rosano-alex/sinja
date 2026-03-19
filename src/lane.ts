@@ -101,7 +101,7 @@ export class Lane {
   readonly priority: Priority;
 
   /**
-   * Forked pulse values.
+    * Pulse overrides within this lane.
    *
    * When a pulse is set() within this lane's context, the new value
    * is stored here instead of on the pulse itself. When a pulse is

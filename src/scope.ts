@@ -347,7 +347,7 @@ export class Scope {
 
     throw new Error(
       `Unhandled effect: ${String(key)}. ` +
-        `Install a handler via scope.handle() on an ancestor scope.`,
+      `Install a handler via scope.handle() on an ancestor scope.`,
     );
   }
 
@@ -540,7 +540,7 @@ export function perform<T, R>(key: EffectKey<T, R>, payload: T): R | undefined {
   if (!activeScope) {
     throw new Error(
       `perform() called outside of any scope. ` +
-        `Wrap your code in scope.run() to establish a scope context.`,
+      `Wrap your code in scope.run() to establish a scope context.`,
     );
   }
   return activeScope.perform(key, payload);
@@ -558,7 +558,7 @@ export function onCleanup(fn: () => void): void {
   if (!activeScope) {
     throw new Error(
       `onCleanup() called outside of any scope. ` +
-        `Wrap your code in scope.run() to establish a scope context.`,
+      `Wrap your code in scope.run() to establish a scope context.`,
     );
   }
   activeScope.onCleanup(fn);

@@ -43,12 +43,12 @@ import type { Node } from "./node";
  */
 export type BridgeMessage =
   | {
-      type: "expose";
-      id: string;
-      value: any;
-      kind: "signal" | "computed";
-      version: number;
-    }
+    type: "expose";
+    id: string;
+    value: any;
+    kind: "signal" | "computed";
+    version: number;
+  }
   | { type: "update"; id: string; value: any; version: number }
   | { type: "set"; id: string; value: any }
   | { type: "subscribe"; id: string }
