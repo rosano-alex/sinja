@@ -1,6 +1,6 @@
 {
   "name": "talix",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "A minimal, high-performance fine-grained reactive runtime with priority-lane scheduling",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",
