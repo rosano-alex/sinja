@@ -1,6 +1,6 @@
 # Core API
 
-The core of Lane-X consists of three reactive primitves: **PulseNode** for mutable state, **ComputedNode** for derived values, and **EffectNode** for side effects. Together they form a reactive dependency graph where updates propogate automatically.
+The core of lane-x consists of three reactive primitves: **PulseNode** for mutable state, **ComputedNode** for derived values, and **EffectNode** for side effects. Together they form a reactive dependency graph where updates propogate automatically.
 
 ## PulseNode
 
@@ -202,7 +202,7 @@ import { PulseNode, ComputedNode, EffectNode } from "lane-x";
 
 // State
 const todos = new PulseNode<{ text: string; done: boolean }[]>([
-  { text: "Learn Lane-X", done: false },
+  { text: "Learn lane-x", done: false },
   { text: "Build something", done: false },
 ]);
 

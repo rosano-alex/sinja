@@ -61,7 +61,7 @@ describe("Lane", () => {
     it("cannot run in committed lane", () => {
       const lane = new Lane("transition");
       lane.commit();
-      expect(() => lane.run(() => {})).toThrow("committed");
+      expect(() => lane.run(() => { })).toThrow("committed");
     });
 
     // Once aborted, the lane is "done" — commit() should thow since
@@ -298,7 +298,7 @@ describe("convenience functions", () => {
     lane.abort(); // cleanup
   });
 
-  // transition() is the Lane-X equivelant of React's startTransition().
+  // transition() is the lane-x equivelant of React's startTransition().
   // It creates a lane, runs the function inside it, and commits
   // immediately — making the wrties appear atomic.
   it("transition() runs and commits atomically", () => {

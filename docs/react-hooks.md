@@ -1,6 +1,6 @@
 # React Hooks
 
-Lane-X provides a set of React hooks that bridge the reactive graph with React's component model. These hooks let you subscribe to pulses, create computed values, run reactive side-effects, and use concurrent lanes — all within standard React components.
+lane-x provides a set of React hooks that bridge the reactive graph with React's component model. These hooks let you subscribe to pulses, create computed values, run reactive side-effects, and use concurrent lanes — all within standard React components.
 
 ## `usePulse<T>(pulse: PulseNode<T>): T`
 
@@ -70,7 +70,7 @@ This is the low-level primitive for fine-grained reactive rendering. Use it when
 
 ## `useEffectPulse(fn: () => void): void`
 
-Runs a reactive side-effect inside a component that re-executes whenever its pulse dependencies change. This is the Lane-X equivelent of React's `useEffect`, but with automatic dependency tracking.
+Runs a reactive side-effect inside a component that re-executes whenever its pulse dependencies change. This is the lane-x equivelent of React's `useEffect`, but with automatic dependency tracking.
 
 ```tsx
 import { PulseNode, useEffectPulse } from "lane-x";
@@ -130,7 +130,7 @@ function Dashboard() {
 
 ## `useZoTransition(): [boolean, (fn: () => void) => void]`
 
-Lane-X's equivalent of React's `useTransition`, implemented with concurrent lanes. Returns an `[isPending, startTransition]` tuple.
+lane-x's equivalent of React's `useTransition`, implemented with concurrent lanes. Returns an `[isPending, startTransition]` tuple.
 
 Pulse writes inside `startTransition()` are buffered in a concurrent lane and committed asynchronosly after the callback completes.
 

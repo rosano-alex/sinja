@@ -1,6 +1,6 @@
 # Scopes & Algebraic Effects
 
-Scopes provide two key capabilities in Lane-X: **ownership** (automatic cleanup of reactive nodes) and **algebraic effects** (a composable error-handling and control-flow mechanism inspired by languages like Koka and OCaml 5).
+Scopes provide two key capabilities in lane-x: **ownership** (automatic cleanup of reactive nodes) and **algebraic effects** (a composable error-handling and control-flow mechanism inspired by languages like Koka and OCaml 5).
 
 ## Ownership
 
@@ -132,7 +132,7 @@ The runtime walks up the scope tree to find the nearest handler for the given ef
 
 ### Built-in Effects
 
-Lane-X provides three built-in effect keys:
+lane-x provides three built-in effect keys:
 
 #### `ERROR`
 

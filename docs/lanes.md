@@ -1,6 +1,6 @@
 # Lanes (Concurrent Execution)
 
-Lanes are Lane-X's mechanism for concurrent, speculative state updates. They provide isolated execution contexts where pulse writes are buffered without mutating the base reactive graph — similar to how React's concurrent rendering handles transitions.
+Lanes are lane-x's mechanism for concurrent, speculative state updates. They provide isolated execution contexts where pulse writes are buffered without mutating the base reactive graph — similar to how React's concurrent rendering handles transitions.
 
 ## Core Concept
 
@@ -46,7 +46,7 @@ const lane = forkLane("transition");
 
 ### `transition(fn: () => void): void`
 
-Convenience function that creates a transition-priority lane, runs a function in it, and commits the result. This is the Lane-X equivelant of React's `startTransition()`.
+Convenience function that creates a transition-priority lane, runs a function in it, and commits the result. This is the lane-x equivelant of React's `startTransition()`.
 
 ```ts
 import { transition } from "lane-x";

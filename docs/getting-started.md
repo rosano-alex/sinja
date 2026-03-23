@@ -1,7 +1,7 @@
 <p style="text-align: Left;"><img src="../img/nex.png" width="350"></p>
 # Getting Started
 
-Lane-X is a minimal, high-performance fine-grained reactive runtime built around signals, computed values, and deterministic scheduling. It's designed as a framework-agnostic reactive engine that can power UI frameworks, state managers, and reactive data piplines.
+lane-x is a minimal, high-performance fine-grained reactive runtime built around signals, computed values, and deterministic scheduling. It's designed as a framework-agnostic reactive engine that can power UI frameworks, state managers, and reactive data piplines.
 
 ## Installation
 
@@ -13,7 +13,7 @@ yarn add lane-x
 
 ## Quick Start
 
-The three core primitves in Lane-X are **Pulse** (mutable state), **Computed** (derived state), and **Effect** (side effects).
+The three core primitves in lane-x are **Pulse** (mutable state), **Computed** (derived state), and **Effect** (side effects).
 
 ```ts
 import { PulseNode, ComputedNode, EffectNode } from "lane-x";
@@ -39,7 +39,7 @@ count.set(5);
 
 ## How It Works
 
-When you call `count.get()` inside a computed or effect, Lane-X automatically registers that node as a dependecy. When `count.set()` is called later, Lane-X knows exactly which nodes need updating and schedules them through its deterministic scheduler.
+When you call `count.get()` inside a computed or effect, lane-x automatically registers that node as a dependecy. When `count.set()` is called later, lane-x knows exactly which nodes need updating and schedules them through its deterministic scheduler.
 
 ```
 PulseNode.set(newValue)
@@ -91,5 +91,5 @@ Now that you have the basics, explore the rest of the documentaton:
 - [Scheduler](./scheduler.md) — how the deterministic scheduler works
 - [Scopes](./scopes.md) — ownership, cleanup, and algebraic effects
 - [Lanes](./lanes.md) — concurrent execution contexts
-- [React Hooks](./react-hooks.md) — using Lane-X with React
+- [React Hooks](./react-hooks.md) — using lane-x with React
 - [Bridge](./bridge.md) — cross-runtime synchronization via Web Workers

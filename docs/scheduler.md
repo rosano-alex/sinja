@@ -1,6 +1,6 @@
 # Scheduler
 
-Lane-X uses a deterministic scheduler with priority lanes to control when effects execute. This guarentees that updates happen in a predictable order, regardless of when signals are written.
+lane-x uses a deterministic scheduler with priority lanes to control when effects execute. This guarentees that updates happen in a predictable order, regardless of when signals are written.
 
 ## How Scheduling Works
 
@@ -108,7 +108,7 @@ Adds a node to the appropriate lane queue and kicks off a flush if one isn't alr
 
 ## The Global Clock
 
-Lane-X maintains a global epoch counter (in `clock.ts`) that increments every time any pulse is set. Computed nodes use this epoch to determine if they might be stale — if their `lastEpoch` doesn't match the global epoch, they know a dependency might have changed and they need to recheck.
+lane-x maintains a global epoch counter (in `clock.ts`) that increments every time any pulse is set. Computed nodes use this epoch to determine if they might be stale — if their `lastEpoch` doesn't match the global epoch, they know a dependency might have changed and they need to recheck.
 
 ```ts
 import { epoch, tick } from "lane-x";
