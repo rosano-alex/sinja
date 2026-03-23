@@ -16,7 +16,7 @@ import type { Node } from "./node";
  * usePulse
  * ---------
  *
- * Subscribes a React component to a Zo pulseNode and returns its
+ * Subscribes a React component to a Lane-X pulseNode and returns its
  * current value.
  *
  * Whenever the pulse's value changes, the component re-renders
@@ -220,9 +220,9 @@ export function useObserver(
  * ---------------
  *
  * Runs a reactive side-effect inside a React component that automatically
- * re-executes whenever its Zo pulse dependencies change.
+ * re-executes whenever its Lane-X pulse dependencies change.
  *
- * This is the Zo equivalent of React's useEffect, but dependency
+ * This is the Lane-X equivalent of React's useEffect, but dependency
  * tracking is automatic — you do not need to declare a dependency array.
  * Any pulses read inside `fn` are tracked and will trigger a re-run.
  *
@@ -250,7 +250,7 @@ export function useObserver(
  * Difference from useEffect:
  *
  *   useEffect   → you declare deps manually, React re-runs on dep changes
- *   useEffectpulse → deps are tracked automatically, Zo re-runs on pulse changes
+ *   useEffectpulse → deps are tracked automatically, Lane-X re-runs on pulse changes
  *
  * @param fn - The side-effect function. May read any number of pulses.
  */
@@ -330,14 +330,14 @@ export function useScope(): Scope {
 }
 
 // ##############################
-// useTransition (Zo)
+// useTransition (Lane-X)
 // ##############################
 
 /**
  * useZoTransition
  * -------------------
  *
- * Zo's equivalent of React's useTransition, implemented using
+ * Lane-X's equivalent of React's useTransition, implemented using
  * concurrent lanes.
  *
  * Returns a [isPending, startTransition] tuple. pulse writes inside

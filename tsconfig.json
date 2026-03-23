@@ -6,10 +6,10 @@
     ],
     "rootDir": ".",
     "paths": {
-      "@zo": [
+      "@lane-x": [
         "./src/index"
       ],
-      "@zo/react": [
+      "@lane-x/react": [
         "./src/react/index"
       ]
     },

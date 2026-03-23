@@ -1,22 +1,22 @@
 <p style="text-align: Left;"><img src="../img/nex.png" width="350"></p>
 # Getting Started
 
-Zo is a minimal, high-performance fine-grained reactive runtime built around signals, computed values, and deterministic scheduling. It's designed as a framework-agnostic reactive engine that can power UI frameworks, state managers, and reactive data piplines.
+Lane-X is a minimal, high-performance fine-grained reactive runtime built around signals, computed values, and deterministic scheduling. It's designed as a framework-agnostic reactive engine that can power UI frameworks, state managers, and reactive data piplines.
 
 ## Installation
 
 ```bash
-npm install zo
+npm install lane-x
 # or
-yarn add zo
+yarn add lane-x
 ```
 
 ## Quick Start
 
-The three core primitves in Zo are **Pulse** (mutable state), **Computed** (derived state), and **Effect** (side effects).
+The three core primitves in Lane-X are **Pulse** (mutable state), **Computed** (derived state), and **Effect** (side effects).
 
 ```ts
-import { PulseNode, ComputedNode, EffectNode } from "zo";
+import { PulseNode, ComputedNode, EffectNode } from "lane-x";
 
 // Create a reactive signal
 const count = new PulseNode(0);
@@ -39,7 +39,7 @@ count.set(5);
 
 ## How It Works
 
-When you call `count.get()` inside a computed or effect, Zo automatically registers that node as a dependecy. When `count.set()` is called later, Zo knows exactly which nodes need updating and schedules them through its deterministic scheduler.
+When you call `count.get()` inside a computed or effect, Lane-X automatically registers that node as a dependecy. When `count.set()` is called later, Lane-X knows exactly which nodes need updating and schedules them through its deterministic scheduler.
 
 ```
 PulseNode.set(newValue)
@@ -58,7 +58,7 @@ Only the affected nodes are re-evaluated — no diffing, no virtual DOM, just pr
 Here's a more complete example that demonstrates how pulses, computeds, and effects compose together:
 
 ```ts
-import { PulseNode, ComputedNode, EffectNode } from "zo";
+import { PulseNode, ComputedNode, EffectNode } from "lane-x";
 
 // Reactive state
 const price = new PulseNode(29.99);
@@ -91,5 +91,5 @@ Now that you have the basics, explore the rest of the documentaton:
 - [Scheduler](./scheduler.md) — how the deterministic scheduler works
 - [Scopes](./scopes.md) — ownership, cleanup, and algebraic effects
 - [Lanes](./lanes.md) — concurrent execution contexts
-- [React Hooks](./react-hooks.md) — using Zo with React
+- [React Hooks](./react-hooks.md) — using Lane-X with React
 - [Bridge](./bridge.md) — cross-runtime synchronization via Web Workers

@@ -1,7 +1,7 @@
 import React, {
   useState, useEffect, useRef, useCallback, memo
 } from 'react';
-import { PulseNode, ComputedNode, EffectNode } from 'zo';
+import { PulseNode, ComputedNode, EffectNode } from 'lane-x';
 import './App.css';
 
 // Code was generated using claude
@@ -149,7 +149,7 @@ function VanillaDemo({ prices, onRender }: VanillaProps) {
   );
 }
 
-// =======Zo demo 
+// =======Lane-X demo 
 
 // Module-level pulses — one per coin, created once
 const stockPulses: PulseNode<number>[] = initPrices().map(p => new PulseNode(p));
@@ -169,7 +169,7 @@ const totalComputed = new ComputedNode<number>(() =>
   stockPulses.reduce((s, p) => s + p.get(), 0)
 );
 
-let zoRenderCount = 0;
+let laneXRenderCount = 0;
 
 function useSignal<T>(pulse: PulseNode<T> | ComputedNode<T>): T {
   const [, set] = useState(0);
@@ -194,7 +194,7 @@ function useSignal<T>(pulse: PulseNode<T> | ComputedNode<T>): T {
 }
 
 const ZoStockCell = memo(function ZoStockCell({ index }: { index: number }) {
-  zoRenderCount++;
+  laneXRenderCount++;
   const price = useSignal(stockPulses[index]);
   const prev = useSignal(prevPulses[index]);
   const ticker = TICKERS[index];
@@ -231,12 +231,12 @@ function ZoTotal() {
 
 function ZoDemo({ onRender }: { onRender: (count: number) => void }) {
   useEffect(() => {
-    zoRenderCount = 0;
+    laneXRenderCount = 0;
   }, []);
 
   // Report render count after each React commit
   useEffect(() => {
-    onRender(zoRenderCount);
+    onRender(laneXRenderCount);
   });
 
   return (
@@ -244,7 +244,7 @@ function ZoDemo({ onRender }: { onRender: (count: number) => void }) {
       <div className="dashboard-header">
         <div>
           <div className="dashboard-title">
-            <span className="highlight">Zo + React</span> — Portfolio
+            <span className="highlight">Lane-X + React</span> — Portfolio
           </div>
           <div className="render-counter">Only changed cells re-render</div>
         </div>
@@ -284,7 +284,7 @@ function runZoUpdate(changedIndices: number[], newPrices: number[]) {
 
 // Scoreboard 
 
-function Scoreboard({ STANDARD, zo }: { STANDARD: BenchStats; zo: BenchStats }) {
+function Scoreboard({ STANDARD, laneX }: { STANDARD: BenchStats; laneX: BenchStats }) {
   const fmt = (n: number) => n.toFixed(2) + 'ms';
   const fmtR = (n: number) => n.toFixed(0);
 
@@ -299,12 +299,12 @@ function Scoreboard({ STANDARD, zo }: { STANDARD: BenchStats; zo: BenchStats }) 
           <div className="metric-row"><span className="metric-label">Total renders</span><span className="metric-val">{fmtR(STANDARD.renders)}</span></div>
           <div className="metric-row"><span className="metric-label">Renders/tick</span><span className="metric-val">{STANDARD.ticks > 0 ? fmtR(STANDARD.renders / STANDARD.ticks) : '—'}</span></div>
         </div>
-        <div className="score-card zo">
-          <div className="score-card-header">Zo + React</div>
-          <div className="metric-row"><span className="metric-label">Avg render</span><span className="metric-val">{fmt(zo.avgMs)}</span></div>
-          <div className="metric-row"><span className="metric-label">Min / Max</span><span className="metric-val">{fmt(zo.minMs)} / {fmt(zo.maxMs)}</span></div>
-          <div className="metric-row"><span className="metric-label">Total renders</span><span className="metric-val">{fmtR(zo.renders)}</span></div>
-          <div className="metric-row"><span className="metric-label">Renders/tick</span><span className="metric-val">{zo.ticks > 0 ? fmtR(zo.renders / zo.ticks) : '—'}</span></div>
+        <div className="score-card laneX">
+          <div className="score-card-header">Lane-X + React</div>
+          <div className="metric-row"><span className="metric-label">Avg render</span><span className="metric-val">{fmt(laneX.avgMs)}</span></div>
+          <div className="metric-row"><span className="metric-label">Min / Max</span><span className="metric-val">{fmt(laneX.minMs)} / {fmt(laneX.maxMs)}</span></div>
+          <div className="metric-row"><span className="metric-label">Total renders</span><span className="metric-val">{fmtR(laneX.renders)}</span></div>
+          <div className="metric-row"><span className="metric-label">Renders/tick</span><span className="metric-val">{laneX.ticks > 0 ? fmtR(laneX.renders / laneX.ticks) : '—'}</span></div>
         </div>
       </div>
     </div>
@@ -323,8 +323,8 @@ export default function App() {
   const [prices, setPrices] = useState<number[]>(initPrices);
   const [vanillaRenders, setVanillaRenders] = useState(0);
 
-  // Zo render count
-  const [zoRenders, setZoRenders] = useState(0);
+  // Lane-X render count
+  const [laneXRenders, setZoRenders] = useState(0);
 
   // Timing history
   const [ticks, setTicks] = useState<BenchTick[]>([]);
@@ -359,7 +359,7 @@ export default function App() {
 
     const zoStart = performance.now();
     vanillaRenderCount = 0;
-    zoRenderCount = 0;
+    laneXRenderCount = 0;
     runZoUpdate(indices, newPrices);
     const zoMs = performance.now() - zoStart;
     zoTimeRef.current = zoMs;
@@ -443,7 +443,7 @@ export default function App() {
     fresh.forEach((p, i) => { stockPulses[i].set(p); prevPulses[i].set(p); });
     setTicks([]);
     setTickCount(0);
-    vanillaRenderCount = 0; zoRenderCount = 0;
+    vanillaRenderCount = 0; laneXRenderCount = 0;
     vanillaCumulRenders.current = 0; zoCumulRenders.current = 0;
     vanillaTimings.current = []; zoTimings.current = [];
     tickRef.current = 0;
@@ -461,7 +461,7 @@ export default function App() {
   return (
     <div className="app">
       <div className="header">
-        <h1><span>Zo + React</span> Performance Demo</h1>
+        <h1><span>Lane-X + React</span> Performance Demo</h1>
         <span className="badge">100 coins · 5 categories · 1 portfolio total</span>
         <span className="badge">tick #{tickCount}</span>
       </div>
@@ -486,7 +486,7 @@ export default function App() {
       </div>
 
       {/* Scoreboard */}
-      <Scoreboard STANDARD={vanillaStats} zo={zoStats} />
+      <Scoreboard STANDARD={vanillaStats} laneX={zoStats} />
 
       {/* Dashboards */}
       <div className="main-layout">
@@ -512,8 +512,8 @@ export default function App() {
               <span className="stat-val bad">{vanillaRenders}</span>
             </div>
             <div className="stat-row">
-              <span className="stat-label">Zo + React renders/tick</span>
-              <span className="stat-val good">{zoRenders}</span>
+              <span className="stat-label">Lane-X + React renders/tick</span>
+              <span className="stat-val good">{laneXRenders}</span>
             </div>
             {reducedRenders !== null && (
               <div className="stat-row">
@@ -526,13 +526,13 @@ export default function App() {
               <span className="stat-val">{vanillaStats.avgMs.toFixed(2)}ms</span>
             </div>
             <div className="stat-row">
-              <span className="stat-label">Zo + React avg</span>
+              <span className="stat-label">Lane-X + React avg</span>
               <span className="stat-val">{zoStats.avgMs.toFixed(2)}ms</span>
             </div>
           </div>
 
           <div className="explanation">
-            <h3>Why Zo + React wins</h3>
+            <h3>Why Lane-X + React wins</h3>
             <p>
               Each tick, <strong>{changesPerTick} of 100 coins</strong> change price.
             </p>
@@ -545,7 +545,7 @@ export default function App() {
             </p>
             <br />
             <p>
-              <span className="highlight">Zo + React</span> gives each coin its own
+              <span className="highlight">Lane-X + React</span> gives each coin its own
               <code> PulseNode</code>. A <code>PulseNode.set()</code> only marks
               <em> that node's</em> observers dirty. Only the {changesPerTick} affected
               cells re-render. The {100 - changesPerTick} untouched coins are never

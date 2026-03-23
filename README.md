@@ -1,8 +1,8 @@
-<p style="text-align: Left;"><img src="img/new_logo.png" width="300"></p>
+<p style="text-align: Left;"><img src="img/lane-x.png" width="350"></p>
 
-**Zo** is a minimal, high‑performance fine‑grained reactive runtime. What sets it apart is its **deterministic microtask scheduler** — instead of flushing updates synchronously, Zo queues reactive work through a priority-lane pipeline (SYNC → USER → TRANSITION → BACKGROUND) and dispatches it via `queueMicrotask`, similar to a service worker processes jobs in the background. This keeps the main thread responsive while guaranteeing a stable, predictable update order.
+**Lane-X** is a minimal, high‑performance fine‑grained reactive runtime. What sets it apart is its **deterministic microtask scheduler** — instead of flushing updates synchronously, Lane-X queues reactive work through a priority-lane pipeline (SYNC → USER → TRANSITION → BACKGROUND) and dispatches it via `queueMicrotask`, similar to a service worker processes jobs in the background. This keeps the main thread responsive while guaranteeing a stable, predictable update order.
 
-Zo draws from Solid signals, MobX, Angular Signals, and React's scheduler priorities, distilling those ideas into a small, framework‑agnostic reactive engine that can power UI frameworks, state managers, and reactive data pipelines.
+Lane-X draws from Solid signals, MobX, Angular Signals, and React's scheduler priorities, distilling those ideas into a small, framework‑agnostic reactive engine that can power UI frameworks, state managers, and reactive data pipelines.
 
 ### High Level Principals
 
@@ -12,7 +12,7 @@ Zo draws from Solid signals, MobX, Angular Signals, and React's scheduler priori
 - **Composability** - Signals, computed values, and effects can be combined freely.
 
 Most signal systems focus purely on **dependency tracking**.
-Zo achieves competitive performance because it uses:
+Lane-X achieves competitive performance because it uses:
 
 • Array based observer lists  
 • Lazy computed evaluation  
@@ -44,9 +44,9 @@ Zo achieves competitive performance because it uses:
 # Installation
 
 ```bash
-npm install zo
+npm install lane-x
 # or
-yarn add zo
+yarn add lane-x
 ```
 
 
@@ -56,7 +56,7 @@ yarn add zo
 
 ### Basic Idea
 ```ts
-import { signal, computed, effect } from "zo";
+import { signal, computed, effect } from "lane-x";
 const count = pulse(0);
 const doubled = computed(() => count.get() * 2);
 
@@ -110,14 +110,14 @@ effect(() => {
 
 # Architecture Overview
 
-Zo builds a **reactive dependency graph**. Only the necessary parts of the graph update.
+Lane-X builds a **reactive dependency graph**. Only the necessary parts of the graph update.
 
 <p style="text-align: Left;"><img src="img/flow.png" width="430"></p>
 
 <br>
 
 # Reactive Nodes (Internal Architecture)
-Zo's runtime is composed of a small set of primitives.
+Lane-X's runtime is composed of a small set of primitives.
 
 Three node types form the dependency graph:
 
@@ -159,7 +159,7 @@ This forms the reactive graph dynamically.
 
 ## Scheduler
 
-Zo uses a **deterministic scheduler with priority lanes**.
+Lane-X uses a **deterministic scheduler with priority lanes**.
 
 ```
 SYNC
@@ -234,7 +234,7 @@ Each effect independently subscribes to dependencies.
 
 ## Reactive Data Pipeline
 
-Zo can also power data flows.
+Lane-X can also power data flows.
 
 ```ts
 const raw = pulse(10);
