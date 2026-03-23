@@ -6,10 +6,10 @@
     ],
     "rootDir": ".",
     "paths": {
-      "@talix": [
+      "@wacho": [
         "./src/index"
       ],
-      "@talix/react": [
+      "@wacho/react": [
         "./src/react/index"
       ]
     },

@@ -1,21 +1,21 @@
-<p style="text-align: Left;"><img src="img/talix.png" width="350"></p>
+<p style="text-align: Left;"><img src="img/wacho.png" width="350"></p>
 
 A minimal, high-performance fine-grained reactive runtime.
 
-Talix queues reactive work through a priority-lane pipeline (SYNC → USER → TRANSITION → BACKGROUND) and dispatches it via `queueMicrotask`, keeping the main thread responsive while guaranteeing a stable, predictable update order. It draws from Solid, MobX, Angular, and React's scheduler priorities — distilled into a small, framework-agnostic engine.
+wacho queues reactive work through a priority-lane pipeline (SYNC → USER → TRANSITION → BACKGROUND) and dispatches it via `queueMicrotask`, keeping the main thread responsive while guaranteeing a stable, predictable update order. It draws from Solid, MobX, Angular, and React's scheduler priorities — distilled into a small, framework-agnostic engine.
 
 ## Install
 
 ```bash
-npm install talix
+npm install wacho
 # or
-yarn add talix
+yarn add wacho
 ```
 
 ## Quick Start
 
 ```ts
-import { pulse, computed, effect } from "talix";
+import { pulse, computed, effect } from "wacho";
 
 const count = pulse(0);
 const doubled = computed(() => count.get() * 2);
@@ -60,7 +60,7 @@ effect(() => console.log(count.get()));
 
 <p style="text-align: Left;"><img src="img/flow.png" width="430"></p>
 
-talix builds a reactive dependency graph from three node types — `PulseNode` (mutable state), `ComputedNode` (derived values), and `EffectNode` (side effects). Dependencies are tracked automatically at read time. When a pulse changes, only the affected subgraph is invalidated and re-evaluated, scheduled through deterministic priority lanes.
+wacho builds a reactive dependency graph from three node types — `PulseNode` (mutable state), `ComputedNode` (derived values), and `EffectNode` (side effects). Dependencies are tracked automatically at read time. When a pulse changes, only the affected subgraph is invalidated and re-evaluated, scheduled through deterministic priority lanes.
 
 ## Example: Derived State
 

@@ -14,7 +14,7 @@ A bridge has two roles:
 ### Main Thread
 
 ```ts
-import { PulseNode, EffectNode, connectWorker } from "talix";
+import { PulseNode, EffectNode, connectWorker } from "wacho";
 
 const worker = new Worker("worker.js");
 const bridge = connectWorker(worker);
@@ -38,7 +38,7 @@ count.set(42);
 ### Worker
 
 ```ts
-import { ComputedNode, createWorkerBridge } from "talix";
+import { ComputedNode, createWorkerBridge } from "wacho";
 
 createWorkerBridge((bridge) => {
   // Proxy the main thread's signal

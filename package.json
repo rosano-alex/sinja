@@ -1,5 +1,5 @@
 {
-  "name": "talix",
+  "name": "wacho",
   "version": "1.0.13",
   "description": "A minimal, high-performance fine-grained reactive runtime with priority-lane scheduling",
   "main": "dist/index.cjs",
@@ -43,11 +43,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/rosano-alex/talix.git"
+    "url": "https://github.com/rosano-alex/wacho.git"
   },
-  "homepage": "https://github.com/rosano-alex/talix#readme",
+  "homepage": "https://github.com/rosano-alex/wacho#readme",
   "bugs": {
-    "url": "https://github.com/rosano-alex/talix/issues"
+    "url": "https://github.com/rosano-alex/wacho/issues"
   },
   "peerDependencies": {
     "react": ">=17.0.0"
