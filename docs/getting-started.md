@@ -1,4 +1,4 @@
-<p style="text-align: Left;"><img src="../img/nex.png" width="350"></p>
+<p style="text-align: Left;"><img src="../img/lane-x.png" width="350"></p>
 # Getting Started
 
 lane-x is a minimal, high-performance fine-grained reactive runtime built around signals, computed values, and deterministic scheduling. It's designed as a framework-agnostic reactive engine that can power UI frameworks, state managers, and reactive data piplines.
@@ -39,17 +39,10 @@ count.set(5);
 
 ## How It Works
 
-When you call `count.get()` inside a computed or effect, lane-x automatically registers that node as a dependecy. When `count.set()` is called later, lane-x knows exactly which nodes need updating and schedules them through its deterministic scheduler.
+When you call `count.get()` inside a computed or effect, lane-x automatically registers that node as a dependecy. When `count.set()`is called later, lane-x knows exactly which nodes need updating and schedules them through its scheduler.
 
-```
-PulseNode.set(newValue)
-   ↓
-mark all observers dirty
-   ↓
-schedule via deterministic scheduler
-   ↓
-flush: SYNC → USER → TRANSITION → BACKGROUND
-```
+
+<p style="text-align: Left;"><img src="../img/diagram-1.png" width="550"></p>
 
 Only the affected nodes are re-evaluated — no diffing, no virtual DOM, just precise, targeted updates.
 
@@ -83,7 +76,7 @@ const receipt = new EffectNode(() => {
 quantity.set(5);
 ```
 
-## hogt Steps
+## Next Steps
 
 Now that you have the basics, explore the rest of the documentaton:
 
