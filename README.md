@@ -74,7 +74,7 @@ const total = computed(() => subtotal.get() + tax.get());
 effect(() => console.log("total =", total.get()));
 ```
 
-## React Integration
+## React Usage Example
 
 Lane-x ships with first-class React hooks. Here's a temperature converter that demonstrates reactive state, derived computations, scoped error handling, concurrent transitions, and reactive side-effects in a single compact component.
 
